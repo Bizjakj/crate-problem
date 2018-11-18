@@ -60,8 +60,9 @@ int main()
 	}
 
 	int sum = occsquares;
-	for (int i = 0; i < row; i++) {	//after this, sum = num squares that have at least 1 crate + sum of all the columns max, + sum of all rows max
-									//we now subtract each row/col we can combine
+	for (int i = 0; i < row; i++) {	//after this, sum = num squares that have at least 1 crate + sum of all the columns max -1
+					// + sum of all rows max -1
+					//we now subtract each row/col we can combine
 		sum += max.row[i] - 1;
 	}
 	for (int j = 0; j < col; j++) {
@@ -70,8 +71,8 @@ int main()
 
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
-			//checks if we can combine, this is based off row and column being the same max, neither already having been combined,
-			//and the square starting with at least 1 crate so top view wont change if we combine them
+		//checks if we can combine, this is based off row and column having the same max, neither already having been 
+		//combined, and the intersect square starting with at least 1 crate so top view wont change if we combine them
 			if (max.row[i] == max.col[j] && max.rowDup[i] == 0 && max.colDup[j] == 0 && grid[i][j] != 0) {
 				sum -= max.row[i] - 1;
 				max.rowDup[i] = 1;
